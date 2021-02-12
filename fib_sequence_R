@@ -1,0 +1,53 @@
+# Generalized Fibonacci Sequence - where n is the nth term of the sequence and k is the number of steps for backward addition
+# Written in R
+
+fibk <- function(n, k) {
+  
+  if (k > n) stop('lag must be less than the number of terms (k <= n)')
+  
+  series <- (1:n)
+  for (i in i:n) {
+    if (i > k) {
+      j <- 1
+      cum_sum <- 0
+      while (j <= k) {
+        cum_sum <- cum_sum + sum(series[i-j])
+        j = j + 1
+      }
+      series[i] <- cum_sum
+      }
+    else {series[i] <- 1}
+  }
+  print(series[n])
+}
+
+
+## The Classic Fibonacci Sequence
+
+
+fib2 = function(n) {
+  series <- (1:n)
+  for (i in i:n) {
+    if (i > 2) {
+      series[i] <- sum(series[i-2], series[i-1])}
+    else {series[i]}
+  }
+  print(series[n])
+}
+
+## Custom model for a variation by adding three steps back
+
+fib3 = function(n) {
+  series <- (1:n)
+  for (i in i:n) {
+    if (i > 3) {
+      series[i] <- sum(series[i-2], series[i-1], series[i-3])}
+    else {series[i] <- 1}
+  }
+  print(series[n])
+}
+
+# Testing
+
+fibk(10, 3) == fib3(10)
+fibk(10, 2) == fib2(10)
